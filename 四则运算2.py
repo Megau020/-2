@@ -1,132 +1,209 @@
 #writher gu peng
-#edit date 20160309
+#edit date 20160312
 
-from fractions import Fraction#·ÖÊý
-from random import randint#Ëæ»úÊý
+from fractions import Fraction#åˆ†æ•°
+from random import randint#éšæœºæ•°
+
+def layer(layer_accual2,operat_number2,brackets2,layer_amount2):#é€’å½’ç¨‹åº
 
 
-layer_amount=3  #×¼±¸²¿·Ö£¬Ö´ÐÐ²ÎÊý£¬ÔËËã²ãÊý£¬ÔËËãµ½µÄ²ãÊý
-layer_accual=0
-
-operator=["k"]*(layer_amount+3)#ÔËËã·ûµÄ¼ÇÂ¼
-operat_number=["?"]*(layer_amount+3)#ÔËËãÊýµÄ¼ÇÂ¼Æ÷
-brackets=[0]*(layer_amount+1)#À¨ºÅµÄ´æÔÚ±êÖ¾
-operator[0]="?"
-operator[2]="?"
-expressions="4"
-opreation_radom2=[0]*(layer_amount+1)
-def layer(layer_accual2,operat_number2,brackets2,layer_amount2):#µÝ¹é³ÌÐò
-    
-    if(layer_accual2>0):#¶ÔµÚÒ»²ã¿ªÊ¼¼ÆËã£¬½«ÐÎ³É3¸öÒÔÉÏµÄÊý×Ö£¬²ãÊýÔÝÊ±ÎªÉè¶¨µÄ3¡£
-        #Ñ¡ÔñÊý×Ö±êºÅ
+    if(layer_accual2>0):#å¯¹ç¬¬ä¸€å±‚å¼€å§‹è®¡ç®—ï¼Œå°†å½¢æˆ3ä¸ªä»¥ä¸Šçš„æ•°å­—ï¼Œå±‚æ•°æš‚æ—¶ä¸ºè®¾å®šçš„3ã€‚
+         #é€‰æ‹©æ•°å­—æ ‡å·
         #print"layer_accual2",layer_accual2
-        opreation_radom=randint(0,layer_accual2)#µÚÒ»²ã¼Ó1£¬³éÈ¡ºÅÂë£¬½øÐÐÌæ»»
-        opreation_radom2[layer_accual2]=opreation_radom
+        opreation_radom=randint(0,layer_accual2-1)#ç¬¬ä¸€å±‚åŠ 1ï¼ŒæŠ½å–å·ç ï¼Œè¿›è¡Œæ›¿æ¢
         find_operat_number=operat_number[opreation_radom]
-        #¼´Á½¸öÊýÖÐÑ¡ÔñÒ»¸öÊý½øÐÐÌæ»»³ÉÎªÒ»¸ö¼òµ¥µÄËÄÔò¶þÔªÔËËã
-        #print "opreation_num",opreation_num
-        #½«Ñ¡ÖÐµÄÊý×Ö´ÓµÚ¶þ²ã¿ªÊ¼£¬ÓÃÒ»¸ö¼òµ¥µÄ¶þÔªÔËËãÊ½Ìæ»»Ñ¡ÖÐµÄÊý×Ö£¬²¢²åÈëÊý×é
-        #²åÈëÊ±ÒÀ¾ÝÊý×Ö±àºÅÅÐ¶ÏÊÇ·ñ¼ÓÈëÀ¨ºÅ£¬ÒÀ¾Ý´ËÊý×ÖËùÔÚµÄÖÜÎ§ÊÇ·ñÓÐ*\·ûºÅ
-        #ÅÐ¶ÏÊÇ·ñÓÐÌí¼ÓÀ¨ºÅ
-        if((operator[opreation_radom]=="/")or(operator[opreation_radom]=="*")or(operator[opreation_radom+1]=="/")or(operator[opreation_radom+1]=="*")):#ÅÐ¶ÏÑ¡ÖÐÊý×ÖÖÜÎ§µÄ·ûºÅ
+        #å³ä¸¤ä¸ªæ•°ä¸­é€‰æ‹©ä¸€ä¸ªæ•°è¿›è¡Œæ›¿æ¢æˆä¸ºä¸€ä¸ªç®€å•çš„å››åˆ™äºŒå…ƒè¿ç®—
+        #print "operater_num",operater_num
+        #å°†é€‰ä¸­çš„æ•°å­—ä»Žç¬¬äºŒå±‚å¼€å§‹ï¼Œç”¨ä¸€ä¸ªç®€å•çš„äºŒå…ƒè¿ç®—å¼æ›¿æ¢é€‰ä¸­çš„æ•°å­—ï¼Œå¹¶æ’å…¥æ•°ç»„
+        #æ’å…¥æ—¶ä¾æ®æ•°å­—ç¼–å·åˆ¤æ–­æ˜¯å¦åŠ å…¥æ‹¬å·ï¼Œä¾æ®æ­¤æ•°å­—æ‰€åœ¨çš„å‘¨å›´æ˜¯å¦æœ‰*\ç¬¦å·
+        #åˆ¤æ–­æ˜¯å¦æœ‰æ·»åŠ æ‹¬å·
+        if((operator[opreation_radom]=="/")or(operator[opreation_radom]=="*")or(operator[opreation_radom+1]=="/")or(operator[opreation_radom+1]=="*")):#åˆ¤æ–­é€‰ä¸­æ•°å­—å‘¨å›´çš„ç¬¦å·
             brackets[layer_accual2]=1
-            #print"(",
+        if(multiplication_and_division==2):
+            brackets[layer_accual2]=0
 
-    opreation_num=randint(1,4)  #½«ÔËËã·ûÈëÊý×é
+
+    operater_num=randint(1,multiplication_and_division)  #å°†è¿ç®—ç¬¦å…¥æ•°ç»„
     operator_one="?"
-    if(opreation_num==1):
+    if(operater_num==1):
         operator_one="+"
-    if(opreation_num==2):
+    if(operater_num==2):
         operator_one="-"
-    if(opreation_num==3):
+    if(operater_num==3):
         operator_one="*"
-    if(opreation_num==4):
+    if(operater_num==4):
         operator_one="/"
-    #operator_one
-
-    #Êä³ö
-
-
-    #ÕûÀíËãÊ½
-    if(layer_accual2==1):
-        tempperate1=str(operat_number[0])
-        tempperate2=str(operat_number[1])
-        expressions=operat_number[0]+operator[1]+operat_number[1]
-        #print"µÚÒ»²úÉúÊ½",expressions
-      
-    if(layer_accual2>1):
-        #ÏÈÕÒµ½Ìæ»»Êý×Ö£¬È»ºó²úÉú±í´ïÊ½2£¬ÓÃ2Ìæ»»±í´ïÊ½1
-        global expressions
-        kk=str(operat_number[opreation_radom])
-        expressions2=operat_number[opreation_radom]+operator[opreation_radom]+operat_number[opreation_radom-1]
-        #print "expressions2",expressions2
-        expressions=expressions.replace(find_operat_number,expressions2)
-        #print "±í´ïÊ½",expressions
-
-
+        
     if(layer_accual2==0):
         operator[1]=operator_one
     else:
+        
         mov_amount=layer_accual2+2-opreation_radom
-        opreation_radom=opreation_radom+1
         for i in range(0,mov_amount):
             operator[layer_accual2+2-i]=operator[layer_accual2+2-i-1]
-        operator[opreation_radom]=operator_one
-
-            
-    zhen_zheng=randint(1,2)  #ÊÇÕæ·ÖÊý»òÕßÕûÊý£¬Ëæ»ú
-    if(zhen_zheng==1):          #²úÉúµÚÒ»¸öÊý×Ö 
-        first_num=randint(0,10)
+            #print"i",i 
+        operator[opreation_radom+1]=operator_one
+        
+    zhen_zheng=randint(1,2)  #æ˜¯çœŸåˆ†æ•°æˆ–è€…æ•´æ•°ï¼Œéšæœº
+    if(fraction_exist==0):
+        zhen_zheng=1
+    if(zhen_zheng==1):          #äº§ç”Ÿç¬¬ä¸€ä¸ªæ•°å­— 
+        first_num=randint(0,number_range)
         first_num=str(first_num)
     else:
         first_num1=2
         first_num2=1
         while (first_num1>=first_num2):
-            first_num1=randint(1,10)
-            first_num2=randint(1,10)
+            first_num1=randint(1,number_range)
+            first_num2=randint(1,number_range)
         first_num=Fraction(first_num1,first_num2)
         if(first_num!=0):
             first_num="("+str(first_num)+")"        
         first_num=str(first_num)
-    zhen_zheng=randint(1,2)  #ÊÇÕæ·ÖÊý»òÕßÕûÊý£¬Ëæ»ú
-    if(zhen_zheng==1):          #²úÉúµÚ¶þ¸öÊý×Ö 
+    zhen_zheng=randint(1,2)  #æ˜¯çœŸåˆ†æ•°æˆ–è€…æ•´æ•°ï¼Œéšæœº
+    if(fraction_exist==0):
+        zhen_zheng=1
+    if(zhen_zheng==1):          #äº§ç”Ÿç¬¬äºŒä¸ªæ•°å­— 
         second_num=randint(0,10)
         second_num=str(second_num)
     else:
         second_num1=2
         second_num2=1
         while (second_num1>=second_num2):
-            second_num1=randint(1,10)
-            second_num2=randint(1,10)
+            second_num1=randint(1,number_range)
+            second_num2=randint(1,number_range)
         second_num=Fraction(second_num1,second_num2)
         if(second_num!=0):
             second_num="("+str(second_num)+")"  
 
-    if(layer_accual2==0):#µÚ0²ã£¬½«×î¿ªÊ¼µÄÁ½¸öÊý×Ö´æÈëÊý×é
+    if(layer_accual2==0):#ç¬¬0å±‚ï¼Œå°†æœ€å¼€å§‹çš„ä¸¤ä¸ªæ•°å­—å­˜å…¥æ•°ç»„
         operat_number[0]=first_num
         operat_number[1]=second_num
+        if(negative_exit==0):#(å¦‚æžœä¸å­˜åœ¨è´Ÿæ•°)
+            if(second_num>first_num and operator_one==2):
+                while(second_num>=first_num):
+                    second_num=randint(1,number_range)
+                    
+        if(remainder==0):#(å¦‚æžœä¸å­˜åœ¨ä½™æ•°)
+           if(operator_one==4):
+                while(second_num%first_num!=0):
+                    print"remainder"
+                    second_num=randint(1,number_range)
 
 
-    #´ÓµÚÒ»²ã¿ªÊ¼´æÈëÁ½¸öÊý×Ö
+
+
+    #ä»Žç¬¬ä¸€å±‚å¼€å§‹å­˜å…¥ä¸¤ä¸ªæ•°å­—
     if(layer_accual2>0):
         mov_amount=layer_accual2+2-opreation_radom
         for i in range(0,mov_amount):
-            operat_number[mov_amount-i]=operat_number[mov_amount-i-1]
+            operat_number[layer_accual2+1-i]=operat_number[layer_accual2+1-i-1]
         operat_number[opreation_radom]=first_num
         operat_number[opreation_radom+1]=second_num
 
 
+    #æ•´ç†ç®—å¼
+    if(layer_accual2==1):
+        tempperate1=str(operat_number[0])
+        tempperate2=str(operat_number[1])
+        expressions=operat_number[0]+operator[1]+operat_number[1]
+      
+    if(layer_accual2>1):
+        #å…ˆæ‰¾åˆ°æ›¿æ¢æ•°å­—ï¼Œç„¶åŽäº§ç”Ÿè¡¨è¾¾å¼2ï¼Œç”¨2æ›¿æ¢è¡¨è¾¾å¼1
+        global expressions
+        kk=str(operat_number[opreation_radom])
+        expressions2=first_num+operator_one+second_num
+        #åˆ›å»ºä¸€ä¸ªæŸ¥æ‰¾æœºåˆ¶ï¼Œå¯»æ‰¾ä¸åŒçš„æ•°å­—å°†å…¶æ›¿æ¢ï¼Ÿ
+        #while(same_amount>0):
+            
+        expressions=expressions.replace(find_operat_number,expressions2)
         
-    #Êä³ö¶Î
     layer_accual2=layer_accual2+1
     if(layer_accual2<layer_amount2+1):
         layer(layer_accual2,operat_number2,brackets2,layer_amount2)
-    layer_accual2=layer_accual2-1
-    #µÝ¹é½áÊø£¬Íù»ØÕûÀíËãÊ½
 
+
+##############ç¨‹åºå¼€å§‹
+expressions_amount=5#ç®—å¼æ•°é‡
+layer_amount=2  #å±‚æ•°ï¼Œå³æ•°çš„ä¸ªæ•°
+number_range=10#æ•´æ•°æ•°å€¼çš„å¤§å°èŒƒå›´
+fraction_exist=1#æ˜¯å¦æœ‰åˆ†æ•°
+multiplication_and_division=2#æ˜¯å¦æœ‰ä¹˜é™¤ï¼Œæœ‰åˆ™ä¸º4
+negative_exit=0#è´Ÿæ•°æ˜¯å¦å­˜åœ¨ï¼Œ1å­˜åœ¨
+remainder=0#ä½™æ•°æ˜¯å¦å­˜åœ¨ï¼Œ1å­˜åœ¨
+pritenr=1#æ‰“å°æœºæ¨¡å¼
+quit_num=1
+print "expressions_amount",expressions_amount
+for counter1 in range(0,expressions_amount):
+    #å‡†å¤‡éƒ¨åˆ†ï¼Œæ‰§è¡Œå‚æ•°ï¼Œè¿ç®—å±‚æ•°ï¼Œè¿ç®—åˆ°çš„å±‚æ•°
+    layer_accual=0
+    operator=['k']*(layer_amount+3)#è®°å½•è¿ç®—ç¬¦çš„è®°å½•
+    operat_number=["?"]*(layer_amount+2)#è®°å½•è¿ç®—æ•°çš„è®°å½•å™¨
+    brackets=[0]*(layer_amount+1)#è®°å½•æ‹¬å·çš„å­˜åœ¨æ ‡å¿—
+    operator[0]="?"
+    operator[2]="?"
+    layer(layer_accual,operat_number,brackets,layer_amount)
+    #expressions_mul[counter1]=expressions#æŸ¥é‡åŠŸèƒ½
+
+while(quit_num==1):
     
+    print"æ‰“å°æ–¹å¼ï¼Œ1ä¸ºå±å¹•æ˜¾ç¤ºï¼Œ2ä¸ºå¯¼å‡ºä¸ºtxtæ–‡ä»¶"
+    temp=input()
+    while(temp!=1 and temp!=2):
+        print"è¯·é‡æ–°è¾“å…¥"
+        temp=input()
+    pritenr=temp
+    
+    print"æ˜¯å¦æœ‰æ‹¬å·ï¼Œæ”¯æŒåä¸ªå‚æ•°å‚ä¸Žè®¡ç®—,1ä¸ºæ— æ‹¬å·ï¼Œ2ä¸ºæœ‰æ‹¬å·"
+    temp=input()
+    while(temp!=1 and temp!=2):
+        print"è¯·é‡æ–°è¾“å…¥"
+        temp=input()
+    multiplication_and_division=2*temp
+        
+    print"æ•°å€¼èŒƒå›´"
+    number_range=input()
+    
+    print"åŠ å‡æœ‰æ— è´Ÿæ•°,1ä¸ºæœ‰è´Ÿæ•°ï¼Œ0ä¸ºæ— è´Ÿæ•°"
+    temp=input()
+    while(temp!=0 and temp!=1):
+        print"è¯·é‡æ–°è¾“å…¥"
+        temp=input()
+    negative_exit=temp
+        
+    print"é™¤æ³•æœ‰æ— ä½™æ•°ï¼Œ1ä¸ºæœ‰ä½™æ•°ï¼Œ0ä¸ºæ— ä½™æ•°"
+    temp=input()
+    while(temp!=1 and temp!=2):
+        print"è¯·é‡æ–°è¾“å…¥"
+        temp=input()
+    remainder=temp
 
-layer(layer_accual,operat_number,brackets,layer_amount)
-#print opreation_radom2
-print "±í´ïÊ½",expressions
-#print'ok'
+    print"æ€»æ•°"
+    expressions_amount=input()
+    #expressions_mul="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"*expressions_amount
+    #print expressions_mul
+    print"start"
+    for counter1 in range(0,expressions_amount):
+        #å‡†å¤‡éƒ¨åˆ†ï¼Œæ‰§è¡Œå‚æ•°ï¼Œè¿ç®—å±‚æ•°ï¼Œè¿ç®—åˆ°çš„å±‚æ•°
+        layer_accual=0
+        operator=['k']*(layer_amount+3)#è®°å½•è¿ç®—ç¬¦çš„è®°å½•
+        operat_number=["?"]*(layer_amount+2)#è®°å½•è¿ç®—æ•°çš„è®°å½•å™¨
+        brackets=[0]*(layer_amount+1)#è®°å½•æ‹¬å·çš„å­˜åœ¨æ ‡å¿—
+        operator[0]="?"
+        operator[2]="?"
+        layer(layer_accual,operat_number,brackets,layer_amount)
+        #expressions_mul[counter1]=expressions#æŸ¥é‡åŠŸèƒ½
+        if(pritenr==1):
+            print expressions
+        else:
+            f = file('output.txt', 'a')
+            f.write(expressions+"\n")
+            #f.write(expressions)
+
+    print"é€€å‡ºï¼Ÿ0ä¸ºé€€å‡ºï¼Œ1ä¸ºç»§ç»­"
+    temp=input()
+    while(temp!=0 and temp!=1):
+        print"è¯·é‡æ–°è¾“å…¥"
+        temp=input()
+    quit_num=temp
+    
