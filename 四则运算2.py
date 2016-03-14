@@ -133,7 +133,7 @@ negative_exit=0#负数是否存在，1存在
 remainder=0#余数是否存在，1存在
 pritenr=1#打印机模式
 quit_num=1
-print "expressions_amount",expressions_amount
+#print "expressions_amount",expressions_amount
 for counter1 in range(0,expressions_amount):
     #准备部分，执行参数，运算层数，运算到的层数
     layer_accual=0
@@ -146,6 +146,7 @@ for counter1 in range(0,expressions_amount):
     #expressions_mul[counter1]=expressions#查重功能
 
 while(quit_num==1):
+
     
     print"打印方式，1为屏幕显示，2为导出为txt文件"
     temp=input()
@@ -153,6 +154,9 @@ while(quit_num==1):
         print"请重新输入"
         temp=input()
     pritenr=temp
+
+    print"参数个数"
+    layer_amount=input()-1
     
     print"是否有括号，支持十个参数参与计算,1为无括号，2为有括号"
     temp=input()
@@ -170,10 +174,18 @@ while(quit_num==1):
         print"请重新输入"
         temp=input()
     negative_exit=temp
+
+
+    print"加减有无分数,1为有分数，0为无分数"
+    temp=input()
+    while(temp!=0 and temp!=1):
+        print"请重新输入"
+        temp=input()
+    fraction_exist=temp
         
     print"除法有无余数，1为有余数，0为无余数"
     temp=input()
-    while(temp!=1 and temp!=2):
+    while(temp!=1 and temp!=0):
         print"请重新输入"
         temp=input()
     remainder=temp
